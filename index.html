@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-accent="saffron">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodMatch Taiwan — Find Food That Matches You</title>
+
+    <meta
+        name="description"
+        content="FoodMatch Taiwan helps you discover nearby restaurants based on your dietary preferences, cuisine, budget and location."
+    >
+
+    <meta name="theme-color" content="#f97316">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <button
+                class="brand"
+                data-view="home"
+                aria-label="Go to FoodMatch Taiwan home"
+            >
+                <span class="brand-mark">🍜</span>
+
+                <span class="brand-text">
+                    <strong>FoodMatch</strong>
+                    <span>Taiwan</span>
+                </span>
+            </button>
+
+            <nav class="desktop-nav" aria-label="Main navigation">
+
+                <button class="nav-link active" data-view="home">
+                    Home
+                </button>
+
+                <button class="nav-link" data-view="find">
+                    Find Food
+                </button>
+
+                <button class="nav-link" data-view="nearby">
+                    Nearby
+                </button>
+
+                <button class="nav-link" data-view="favorites">
+                    Favorites
+                    <span class="nav-count" id="favoriteNavCount">0</span>
+                </button>
+
+                <button class="nav-link" data-view="profile">
+                    Profile
+                </button>
+
+            </nav>
+
+            <div class="header-actions">
+
+                <button
+                    class="icon-button"
+                    id="openCommand"
+                    aria-label="Open search"
+                    title="Search (⌘K / Ctrl+K)"
+                >
+                    🔍
+                </button>
+
+                <button
+                    class="icon-button"
+                    id="openHelp"
+                    aria-label="Open help"
+                    title="Help (?)"
+                >
+                    ?
+                </button>
+
+                <button
+                    class="icon-button"
+                    id="headerThemeToggle"
+                    aria-label="Change theme"
+                    title="Change theme"
+                >
+                    ☀️
+                </button>
+
+                <button
+                    class="icon-button settings-icon-button"
+                    data-view="settings"
+                    aria-label="Open settings"
+                    title="Settings"
+                >
+                    ⚙️
+                </button>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main>
+
+        <!-- =========================
+             HOME
+        ========================== -->
+        <section
+            class="view-section active"
+            data-view-section="home"
+        >
+
+            <div class="hero-section">
+
+                <div class="hero-background-shape shape-one"></div>
+                <div class="hero-background-shape shape-two"></div>
+
+                <div class="container hero-grid">
+
+                    <div class="hero-copy">
+
+                        <div class="eyebrow">
+                            🇹🇼 Food discovery made personal
+                        </div>
+
+                        <h1>
+                            Find food that
+                            <span>matches you.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            Discover restaurants in Taiwan based on what you
+                            eat, what you avoid, your budget, your cuisine
+                            preferences and where you are.
+                        </p>
+
+                        <div class="hero-actions">
+
+                            <button
+                                class="primary-button large-button"
+                                data-view="find"
+                            >
+                                🔎 Find My Food
+                            </button>
+
+                            <button
+                                class="secondary-button large-button"
+                                data-view="nearby"
+                            >
+                                📍 Explore Nearby
+                            </button>
+
+                        </div>
+
+                        <div class="hero-trust-row">
+
+                            <span>🥗 Dietary preferences</span>
+                            <span>📍 Real nearby places</span>
+                            <span>🍜 Cuisine matching</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-visual">
+
+                        <div class="food-orbit orbit-one"></div>
+                        <div class="food-orbit orbit-two"></div>
+
+                        <div class="hero-food-card">
+
+                            <div class="hero-food-image">
+                                🍜
+                            </div>
+
+                            <div class="hero-food-content">
+
+                                <span class="mini-label">
+                                    Example match
+                                </span>
+
+                                <h3>
+                                    Your Food Match
+                                </h3>
+
+                                <div class="match-score-big">
+                                    92%
+                                </div>
+
+                                <p>
+                                    Based on your preferences
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="floating-food-card card-a">
+                            🥗 Vegetarian
+                        </div>
+
+                        <div class="floating-food-card card-b">
+                            📍 0.8 km away
+                        </div>
+
+                        <div class="floating-food-card card-c">
+                            ❤️ Saved
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Quick actions -->
+
+            <div class="container section-block">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Quick access
+                        </span>
+
+                        <h2>
+                            What do you want to do?
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div class="quick-actions-grid">
+
+                    <button
+                        class="quick-action-card"
+                        data-view="find"
+                    >
+                        <span class="quick-action-icon">🔎</span>
+                        <strong>Find Food</strong>
+                        <span>
+                            Tell us what you want to eat.
+                        </span>
+                    </button>
+
+                    <button
+                        class="quick-action-card"
+                        data-view="nearby"
+                    >
+                        <span class="quick-action-icon">📍</span>
+                        <strong>Nearby</strong>
+                        <span>
+                            Explore restaurants around you.
+                        </span>
+                    </button>
+
+                    <button
+                        class="quick-action-card"
+                        data-view="favorites"
+                    >
+                        <span class="quick-action-icon">❤️</span>
+                        <strong>Favorites</strong>
+                        <span>
+                            See restaurants you saved.
+                        </span>
+                    </button>
+
+                    <button
+                        class="quick-action-card"
+                        id="homeHelpCard"
+                    >
+                        <span class="quick-action-icon">❓</span>
+                        <strong>How It Works</strong>
+                        <span>
+                            Learn how FoodMatch works.
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Category chips -->
+
+            <div class="container section-block">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Popular preferences
+                        </span>
+
+                        <h2>
+                            Start with a food style
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div class="category-chip-grid">
+
+                    <button class="category-chip" data-cuisine-shortcut="Taiwanese">
+                        <span>🥡</span>
+                        Taiwanese
+                    </button>
+
+                    <button class="category-chip" data-cuisine-shortcut="Japanese">
+                        <span>🍣</span>
+                        Japanese
+                    </button>
+
+                    <button class="category-chip" data-cuisine-shortcut="Korean">
+                        <span>🍜</span>
+                        Korean
+                    </button>
+
+                    <button class="category-chip" data-cuisine-shortcut="Indian">
+                        <span>🪔</span>
+                        Indian
+                    </button>
+
+                    <button class="category-chip" data-diet-shortcut="vegetarian">
+                        <span>🥗</span>
+                        Vegetarian
+                    </button>
+
+                    <button class="category-chip" data-diet-shortcut="vegan">
+                        <span>🌱</span>
+                        Vegan
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- How it works -->
+
+            <div class="container section-block">
+
+                <div class="section-heading centered-heading">
+
+                    <span class="section-kicker">
+                        Simple by design
+                    </span>
+
+                    <h2>
+                        How FoodMatch works
+                    </h2>
+
+                    <p>
+                        Three simple steps from preference to restaurant.
+                    </p>
+
+                </div>
+
+
+                <div class="steps-grid">
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-icon">
+                            🥗
+                        </div>
+
+                        <h3>
+                            Tell us about you
+                        </h3>
+
+                        <p>
+                            Choose your dietary preference, restrictions,
+                            budget and favourite cuisines.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-icon">
+                            📍
+                        </div>
+
+                        <h3>
+                            Choose your location
+                        </h3>
+
+                        <p>
+                            Use your current location or explore restaurants
+                            around a selected Taiwan city.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-icon">
+                            ❤️
+                        </div>
+
+                        <h3>
+                            Match with food
+                        </h3>
+
+                        <p>
+                            FoodMatch ranks available restaurants using the
+                            information that is actually available.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Data note -->
+
+            <div class="container section-block">
+
+                <div class="info-banner">
+
+                    <div class="info-banner-icon">
+                        ℹ️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            About restaurant information
+                        </strong>
+
+                        <p>
+                            FoodMatch uses OpenStreetMap data for nearby
+                            restaurants. Menu prices and ingredient-level
+                            dietary information may not be available for
+                            every restaurant, so missing information is
+                            shown as unknown rather than guessed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FIND FOOD
+        ========================== -->
+        <section
+            class="view-section"
+            data-view-section="find"
+        >
+
+            <div class="container page-top">
+
+                <div class="page-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Personal matching
+                        </span>
+
+                        <h1>
+                            Find food that fits you
+                        </h1>
+
+                        <p>
+                            Choose your preferences and let FoodMatch find
+                            nearby restaurants using available data.
+                        </p>
+                    </div>
+
+                    <button
+                        class="help-shortcut-button"
+                        id="findHelpButton"
+                    >
+                        ❓ Help
+                    </button>
+
+                </div>
+
+
+                <div class="preference-card">
+
+                    <div class="preference-card-header">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                Step 1
+                            </span>
+
+                            <h2>
+                                Your preferences
+                            </h2>
+
+                        </div>
+
+                        <span class="save-status" id="preferenceSaveStatus">
+                            ✓ Saved automatically
+                        </span>
+
+                    </div>
+
+
+                    <div class="preference-grid">
+
+                        <div class="form-group">
+
+                            <label for="dietPreference">
+                                Dietary Preference
+                            </label>
+
+                            <select id="dietPreference">
+                                <option value="none">
+                                    No Preference
+                                </option>
+
+                                <option value="vegetarian">
+                                    🥗 Vegetarian
+                                </option>
+
+                                <option value="vegan">
+                                    🌱 Vegan
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="foodRestriction">
+                                Food Restriction
+                            </label>
+
+                            <select id="foodRestriction">
+
+                                <option value="none">
+                                    No Restriction
+                                </option>
+
+                                <option value="no-eggs">
+                                    🥚 No Eggs
+                                </option>
+
+                                <option value="no-dairy">
+                                    🥛 No Dairy
+                                </option>
+
+                                <option value="no-peanuts">
+                                    🥜 No Peanuts
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="budget">
+                                Budget
+                            </label>
+
+                            <select id="budget">
+
+                                <option value="any">
+                                    Any Budget
+                                </option>
+
+                                <option value="under100">
+                                    Under NT$100
+                                </option>
+
+                                <option value="100-200">
+                                    NT$100–200
+                                </option>
+
+                                <option value="200-300">
+                                    NT$200–300
+                                </option>
+
+                                <option value="300plus">
+                                    NT$300+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cuisine">
+                                Cuisine
+                            </label>
+
+                            <select id="cuisine">
+
+                                <option value="any">
+                                    Any Cuisine
+                                </option>
+
+                                <option value="Taiwanese">
+                                    🥡 Taiwanese
+                                </option>
+
+                                <option value="Chinese">
+                                    🥟 Chinese
+                                </option>
+
+                                <option value="Japanese">
+                                    🍣 Japanese
+                                </option>
+
+                                <option value="Korean">
+                                    🍜 Korean
+                                </option>
+
+                                <option value="Indian">
+                                    🪔 Indian
+                                </option>
+
+                                <option value="Italian">
+                                    🍝 Italian
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label for="locationPreference">
+                                Location
+                            </label>
+
+                            <select id="locationPreference">
+
+                                <option value="nearby">
+                                    📍 Near My Location
+                                </option>
+
+                                <option value="anywhere">
+                                    Anywhere in Taiwan
+                                </option>
+
+                                <option value="Taipei">
+                                    Taipei
+                                </option>
+
+                                <option value="New Taipei">
+                                    New Taipei
+                                </option>
+
+                                <option value="Taoyuan">
+                                    Taoyuan
+                                </option>
+
+                                <option value="Taichung">
+                                    Taichung
+                                </option>
+
+                                <option value="Tainan">
+                                    Tainan
+                                </option>
+
+                                <option value="Kaohsiung">
+                                    Kaohsiung
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="location-actions">
+
+                        <button
+                            class="secondary-button"
+                            id="useMyLocation"
+                        >
+                            📍 Use My Location
+                        </button>
+
+                        <span
+                            class="location-status"
+                            id="locationStatus"
+                        >
+                            Location has not been selected yet.
+                        </span>
+
+                    </div>
+
+
+                    <div class="match-action">
+
+                        <button
+                            class="primary-button match-button"
+                            id="findMyMatch"
+                        >
+                            🔎 Find My Match
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div id="matchResultsSection" class="results-section hidden">
+
+                    <div class="results-header">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                Your results
+                            </span>
+
+                            <h2>
+                                Restaurants matched for you
+                            </h2>
+
+                            <p id="matchSummary">
+                                Restaurants are ranked using available information.
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="secondary-button"
+                            id="refreshMatches"
+                        >
+                            ↻ Refresh
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="restaurant-grid"
+                        id="matchResults"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NEARBY
+        ========================== -->
+        <section
+            class="view-section"
+            data-view-section="nearby"
+        >
+
+            <div class="container page-top">
+
+                <div class="page-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Explore
+                        </span>
+
+                        <h1>
+                            Nearby restaurants
+                        </h1>
+
+                        <p>
+                            Discover real restaurants around your selected
+                            location.
+                        </p>
+                    </div>
+
+                    <button
+                        class="help-shortcut-button"
+                        id="nearbyHelpButton"
+                    >
+                        ❓ Help
+                    </button>
+
+                </div>
+
+
+                <div class="nearby-toolbar">
+
+                    <div class="toolbar-group">
+
+                        <label for="nearbyRadius">
+                            Search radius
+                        </label>
+
+                        <select id="nearbyRadius">
+
+                            <option value="1">
+                                Within 1 km
+                            </option>
+
+                            <option value="3" selected>
+                                Within 3 km
+                            </option>
+
+                            <option value="5">
+                                Within 5 km
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="toolbar-actions">
+
+                        <button
+                            class="secondary-button"
+                            id="nearbyUseLocation"
+                        >
+                            📍 Use My Location
+                        </button>
+
+                        <button
+                            class="primary-button"
+                            id="refreshNearby"
+                        >
+                            ↻ Refresh
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="nearby-status-banner"
+                    id="nearbyStatus"
+                >
+                    Choose a location or use your current location to find restaurants.
+                </div>
+
+
+                <div
+                    class="restaurant-grid"
+                    id="nearbyRestaurants"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FAVORITES
+        ========================== -->
+        <section
+            class="view-section"
+            data-view-section="favorites"
+        >
+
+            <div class="container page-top">
+
+                <div class="page-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Your collection
+                        </span>
+
+                        <h1>
+                            Your favorites
+                        </h1>
+
+                        <p>
+                            Restaurants you saved for later.
+                        </p>
+                    </div>
+
+                    <button
+                        class="help-shortcut-button"
+                        id="favoritesHelpButton"
+                    >
+                        ❓ Help
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="restaurant-grid"
+                    id="favoritesGrid"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROFILE
+        ========================== -->
+        <section
+            class="view-section"
+            data-view-section="profile"
+        >
+
+            <div class="container page-top">
+
+                <div class="page-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Your FoodMatch
+                        </span>
+
+                        <h1>
+                            Profile
+                        </h1>
+
+                        <p>
+                            Your saved preferences and FoodMatch activity.
+                        </p>
+                    </div>
+
+                    <button
+                        class="help-shortcut-button"
+                        data-view="settings"
+                    >
+                        ⚙️ Settings
+                    </button>
+
+                </div>
+
+
+                <div class="profile-layout">
+
+                    <div class="profile-card">
+
+                        <div class="profile-avatar">
+                            🍜
+                        </div>
+
+                        <h2>
+                            Food Explorer
+                        </h2>
+
+                        <p>
+                            Your FoodMatch profile is stored locally on this device.
+                        </p>
+
+                        <button
+                            class="primary-button"
+                            data-view="find"
+                        >
+                            🔎 Find Food
+                        </button>
+
+                    </div>
+
+
+                    <div class="profile-main">
+
+                        <div class="stats-grid">
+
+                            <div class="stat-card">
+                                <span>❤️</span>
+                                <strong id="profileFavoriteCount">0</strong>
+                                <small>Favorites</small>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>🍽️</span>
+                                <strong id="profileDiscoveredCount">0</strong>
+                                <small>Restaurants found</small>
+                            </div>
+
+                            <div class="stat-card">
+                                <span>⚙️</span>
+                                <strong id="profilePreferenceCount">0</strong>
+                                <small>Preferences set</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-preferences-card">
+
+                            <div class="card-title-row">
+
+                                <div>
+                                    <span class="section-kicker">
+                                        Saved preferences
+                                    </span>
+
+                                    <h2>
+                                        Your food profile
+                                    </h2>
+                                </div>
+
+                                <button
+                                    class="text-button"
+                                    data-view="find"
+                                >
+                                    Edit
+                                </button>
+
+                            </div>
+
+                            <div
+                                class="preference-summary-grid"
+                                id="profilePreferenceSummary"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="shortcut-card">
+
+                            <div>
+
+                                <span class="section-kicker">
+                                    Keyboard shortcuts
+                                </span>
+
+                                <h2>
+                                    Navigate faster
+                                </h2>
+
+                            </div>
+
+                            <div class="shortcut-list">
+
+                                <span><kbd>⌘ K</kbd> Search</span>
+                                <span><kbd>H</kbd> Home</span>
+                                <span><kbd>F</kbd> Find</span>
+                                <span><kbd>N</kbd> Nearby</span>
+                                <span><kbd>L</kbd> Favorites</span>
+                                <span><kbd>P</kbd> Profile</span>
+                                <span><kbd>S</kbd> Settings</span>
+                                <span><kbd>T</kbd> Theme</span>
+                                <span><kbd>?</kbd> Help</span>
+                                <span><kbd>Esc</kbd> Close</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SETTINGS
+        ========================== -->
+        <section
+            class="view-section"
+            data-view-section="settings"
+        >
+
+            <div class="container page-top">
+
+                <div class="page-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            Customize
+                        </span>
+
+                        <h1>
+                            Settings
+                        </h1>
+
+                        <p>
+                            Make FoodMatch look and behave the way you like.
+                        </p>
+                    </div>
+
+                    <button
+                        class="help-shortcut-button"
+                        id="settingsHelpButton"
+                    >
+                        ❓ Help
+                    </button>
+
+                </div>
+
+
+                <div class="settings-layout">
+
+                    <!-- Appearance -->
+
+                    <div class="settings-card">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-card-icon">
+                                🎨
+                            </div>
+
+                            <div>
+                                <h2>Appearance</h2>
+                                <p>
+                                    Choose how FoodMatch looks.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="setting-label">
+                            Theme
+                        </div>
+
+                        <div class="theme-choice-grid">
+
+                            <button
+                                class="theme-choice"
+                                data-theme-choice="light"
+                            >
+                                <span class="theme-preview light-preview">
+                                    ☀️
+                                </span>
+
+                                <strong>Light</strong>
+
+                                <small>
+                                    Bright and clean
+                                </small>
+
+                            </button>
+
+
+                            <button
+                                class="theme-choice"
+                                data-theme-choice="dark"
+                            >
+                                <span class="theme-preview dark-preview">
+                                    🌙
+                                </span>
+
+                                <strong>Dark</strong>
+
+                                <small>
+                                    Easy on the eyes
+                                </small>
+
+                            </button>
+
+
+                            <button
+                                class="theme-choice"
+                                data-theme-choice="system"
+                            >
+                                <span class="theme-preview system-preview">
+                                    🖥️
+                                </span>
+
+                                <strong>System</strong>
+
+                                <small>
+                                    Follow device
+                                </small>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="setting-label">
+                            Accent colour
+                        </div>
+
+                        <div class="accent-grid">
+
+                            <button
+                                class="accent-choice accent-saffron"
+                                data-accent-choice="saffron"
+                            >
+                                <span></span>
+                                Saffron
+                            </button>
+
+                            <button
+                                class="accent-choice accent-berry"
+                                data-accent-choice="berry"
+                            >
+                                <span></span>
+                                Berry
+                            </button>
+
+                            <button
+                                class="accent-choice accent-ocean"
+                                data-accent-choice="ocean"
+                            >
+                                <span></span>
+                                Ocean
+                            </button>
+
+                            <button
+                                class="accent-choice accent-mint"
+                                data-accent-choice="mint"
+                            >
+                                <span></span>
+                                Mint
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Accessibility -->
+
+                    <div class="settings-card">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-card-icon">
+                                ♿
+                            </div>
+
+                            <div>
+                                <h2>Accessibility</h2>
+                                <p>
+                                    Make the interface easier to use.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="setting-row">
+
+                            <div>
+                                <strong>Reduce animations</strong>
+                                <small>
+                                    Reduce movement and visual effects.
+                                </small>
+                            </div>
+
+                            <label class="switch">
+                                <input
+                                    type="checkbox"
+                                    id="reduceMotionToggle"
+                                >
+
+                                <span class="slider"></span>
+                            </label>
+
+                        </div>
+
+
+                        <div class="setting-row">
+
+                            <div>
+                                <strong>Larger text</strong>
+                                <small>
+                                    Increase the overall interface size.
+                                </small>
+                            </div>
+
+                            <label class="switch">
+                                <input
+                                    type="checkbox"
+                                    id="largeTextToggle"
+                                >
+
+                                <span class="slider"></span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Preferences -->
+
+                    <div class="settings-card">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-card-icon">
+                                💾
+                            </div>
+
+                            <div>
+                                <h2>Data & Preferences</h2>
+                                <p>
+                                    Control what FoodMatch remembers.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="setting-row">
+
+                            <div>
+                                <strong>Remember preferences</strong>
+                                <small>
+                                    Save your food preferences on this device.
+                                </small>
+                            </div>
+
+                            <label class="switch">
+                                <input
+                                    type="checkbox"
+                                    id="rememberPreferencesToggle"
+                                    checked
+                                >
+
+                                <span class="slider"></span>
+                            </label>
+
+                        </div>
+
+
+                        <button
+                            class="danger-button"
+                            id="clearSavedData"
+                        >
+                            Clear Saved Data
+                        </button>
+
+                    </div>
+
+
+                    <!-- Shortcuts -->
+
+                    <div class="settings-card">
+
+                        <div class="settings-card-heading">
+
+                            <div class="settings-card-icon">
+                                ⌨️
+                            </div>
+
+                            <div>
+                                <h2>Keyboard Shortcuts</h2>
+                                <p>
+                                    Use quick keys from almost anywhere.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="shortcut-list large-shortcut-list">
+
+                            <div>
+                                <kbd>⌘ K</kbd>
+                                <span>Search / command menu</span>
+                            </div>
+
+                            <div>
+                                <kbd>H</kbd>
+                                <span>Home</span>
+                            </div>
+
+                            <div>
+                                <kbd>F</kbd>
+                                <span>Find Food</span>
+                            </div>
+
+                            <div>
+                                <kbd>N</kbd>
+                                <span>Nearby</span>
+                            </div>
+
+                            <div>
+                                <kbd>L</kbd>
+                                <span>Favorites</span>
+                            </div>
+
+                            <div>
+                                <kbd>P</kbd>
+                                <span>Profile</span>
+                            </div>
+
+                            <div>
+                                <kbd>S</kbd>
+                                <span>Settings</span>
+                            </div>
+
+                            <div>
+                                <kbd>T</kbd>
+                                <span>Theme</span>
+                            </div>
+
+                            <div>
+                                <kbd>?</kbd>
+                                <span>Help</span>
+                            </div>
+
+                            <div>
+                                <kbd>Esc</kbd>
+                                <span>Close menus</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         MOBILE BOTTOM NAV
+    ========================== -->
+    <nav class="mobile-bottom-nav">
+
+        <button
+            class="mobile-nav-link active"
+            data-view="home"
+        >
+            <span>🏠</span>
+            <small>Home</small>
+        </button>
+
+        <button
+            class="mobile-nav-link"
+            data-view="find"
+        >
+            <span>🔎</span>
+            <small>Find</small>
+        </button>
+
+        <button
+            class="mobile-nav-link"
+            data-view="nearby"
+        >
+            <span>📍</span>
+            <small>Nearby</small>
+        </button>
+
+        <button
+            class="mobile-nav-link"
+            data-view="favorites"
+        >
+            <span>❤️</span>
+            <small>Favorites</small>
+        </button>
+
+        <button
+            class="mobile-nav-link"
+            data-view="profile"
+        >
+            <span>👤</span>
+            <small>Profile</small>
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         QUICK FLOATING MENU
+    ========================== -->
+    <div class="quick-menu-wrapper">
+
+        <div
+            class="quick-menu-panel"
+            id="quickMenuPanel"
+            aria-hidden="true"
+        >
+
+            <div class="quick-menu-title">
+                <strong>Quick Menu</strong>
+                <span>Shortcuts</span>
+            </div>
+
+            <button data-view="home">
+                🏠
+                <span>Home</span>
+            </button>
+
+            <button data-view="find">
+                🔎
+                <span>Find Food</span>
+            </button>
+
+            <button data-view="nearby">
+                📍
+                <span>Nearby</span>
+            </button>
+
+            <button data-view="favorites">
+                ❤️
+                <span>Favorites</span>
+            </button>
+
+            <button data-view="profile">
+                👤
+                <span>Profile</span>
+            </button>
+
+            <button data-view="settings">
+                ⚙️
+                <span>Settings</span>
+            </button>
+
+            <button id="quickMenuHelp">
+                ❓
+                <span>Help</span>
+            </button>
+
+            <button id="quickMenuTheme">
+                🌙
+                <span>Change Theme</span>
+            </button>
+
+        </div>
+
+
+        <button
+            class="quick-fab"
+            id="quickFab"
+            aria-label="Open quick menu"
+            title="Quick menu"
+        >
+            ⚡
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+    <button
+        class="back-to-top"
+        id="backToTop"
+        aria-label="Back to top"
+        title="Back to top"
+    >
+        ↑
+    </button>
+
+
+    <!-- =========================
+         HELP MODAL
+    ========================== -->
+    <div
+        class="modal-backdrop"
+        id="helpModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal help-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="helpTitle"
+        >
+
+            <button
+                class="modal-close"
+                data-close-modal="helpModal"
+                aria-label="Close help"
+            >
+                ×
+            </button>
+
+            <div class="modal-icon">
+                ❓
+            </div>
+
+            <span class="section-kicker">
+                FoodMatch Help
+            </span>
+
+            <h2 id="helpTitle">
+                How can we help?
+            </h2>
+
+            <p class="modal-intro">
+                Everything you need to navigate FoodMatch Taiwan.
+            </p>
+
+
+            <div class="faq-list">
+
+                <details>
+                    <summary>
+                        🔎 How does FoodMatch work?
+                    </summary>
+
+                    <div>
+                        Choose your preferences and location. FoodMatch then
+                        ranks available restaurants using information such as
+                        cuisine, distance and available dietary tags.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        📍 How do I use my location?
+                    </summary>
+
+                    <div>
+                        Click <strong>Use My Location</strong> and allow
+                        location access in your browser. FoodMatch uses your
+                        location to query nearby restaurants.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        🥗 How are dietary preferences matched?
+                    </summary>
+
+                    <div>
+                        FoodMatch checks available OpenStreetMap dietary tags.
+                        When that information does not exist, the app shows
+                        that the information is unavailable rather than
+                        assuming the restaurant is suitable.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        💰 How does the budget filter work?
+                    </summary>
+
+                    <div>
+                        Current menu prices are not reliably provided by
+                        OpenStreetMap, so budget compatibility is shown as
+                        unavailable for live restaurants unless reliable menu
+                        pricing becomes available.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        🍜 Where does restaurant data come from?
+                    </summary>
+
+                    <div>
+                        Nearby restaurant information comes from OpenStreetMap
+                        through the Overpass API. Restaurant owners and the
+                        OpenStreetMap community maintain that information.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        ❤️ How do I save a restaurant?
+                    </summary>
+
+                    <div>
+                        Press the heart button on a restaurant card. Favorites
+                        are saved locally in your browser and remain after
+                        refreshing this device.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        🌐 How do I open a menu?
+                    </summary>
+
+                    <div>
+                        When a restaurant has an official menu link listed in
+                        available map data, FoodMatch displays an
+                        <strong>Open Menu</strong> button.
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>
+                        ⌨️ What keyboard shortcuts are available?
+                    </summary>
+
+                    <div class="help-shortcut-grid">
+
+                        <span><kbd>⌘ K</kbd> Search</span>
+                        <span><kbd>H</kbd> Home</span>
+                        <span><kbd>F</kbd> Find</span>
+                        <span><kbd>N</kbd> Nearby</span>
+                        <span><kbd>L</kbd> Favorites</span>
+                        <span><kbd>P</kbd> Profile</span>
+                        <span><kbd>S</kbd> Settings</span>
+                        <span><kbd>T</kbd> Theme</span>
+                        <span><kbd>?</kbd> Help</span>
+                        <span><kbd>Esc</kbd> Close</span>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMMAND PALETTE
+    ========================== -->
+    <div
+        class="modal-backdrop"
+        id="commandModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="command-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search FoodMatch"
+        >
+
+            <div class="command-input-wrapper">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    id="commandSearch"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Search restaurants or type a command..."
+                >
+
+                <kbd>ESC</kbd>
+
+            </div>
+
+            <div
+                class="command-results"
+                id="commandResults"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESTAURANT DETAILS MODAL
+    ========================== -->
+    <div
+        class="modal-backdrop"
+        id="foodModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal restaurant-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="foodDetailsTitle"
+        >
+
+            <button
+                class="modal-close"
+                data-close-modal="foodModal"
+                aria-label="Close restaurant details"
+            >
+                ×
+            </button>
+
+            <div id="foodDetails"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+    <div
+        class="toast"
+        id="toast"
+        aria-live="polite"
+    >
+        <span id="toastMessage"></span>
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="site-footer">
+
+        <div class="container footer-inner">
+
+            <div>
+
+                <div class="footer-brand">
+                    🍜 FoodMatch Taiwan
+                </div>
+
+                <p>
+                    Find food that matches you.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <button data-view="home">
+                    Home
+                </button>
+
+                <button data-view="find">
+                    Find Food
+                </button>
+
+                <button data-view="nearby">
+                    Nearby
+                </button>
+
+                <button id="footerHelp">
+                    Help
+                </button>
+
+            </div>
+
+            <div class="footer-attribution">
+
+                Restaurant data ©
+                <a
+                    href="https://www.openstreetmap.org/copyright"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    OpenStreetMap contributors
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
