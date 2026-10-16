@@ -1308,215 +1308,148 @@ function setNearbyStatus(
    OPENSTREETMAP
 ========================================================= */
 
+
 async function loadNearbyRestaurants(
     latitude,
     longitude,
-    radiusKm = 3
+    radiusKm = 1.5
 ) {
+    const radiusMeters = Math.round(radiusKm * 1000);
 
-    const radiusMeters =
-        Math.round(
-            radiusKm * 1000
-        );
-
-
-    setNearbyStatus(
-        `Searching within ${radiusKm} km…`
-    );
-
-
-    renderLoading(
-        $("#nearbyRestaurants")
-    );
-
+    setNearbyStatus(`Searching within ${radiusKm} km…`);
+    renderLoading($("#nearbyRestaurants"));
 
     const query = `
-
-[out:json][timeout:25];
-
+[out:json][timeout:15];
 (
   node["amenity"="restaurant"](around:${radiusMeters},${latitude},${longitude});
   way["amenity"="restaurant"](around:${radiusMeters},${latitude},${longitude});
   relation["amenity"="restaurant"](around:${radiusMeters},${latitude},${longitude});
-
   node["amenity"="fast_food"](around:${radiusMeters},${latitude},${longitude});
   way["amenity"="fast_food"](around:${radiusMeters},${latitude},${longitude});
 );
-
 out center tags;
-
 `;
 
+  const endpoints = [
+    "https://foodmatch-restraunt-proxy.jaganxetri.workers.dev/restaurants"
+];
 
-    const endpoints = [
+    let data = null;
+    let lastError = null;
 
-        "https://overpass-api.de/api/interpreter",
-
-        "https://overpass.kumi.systems/api/interpreter",
-
-        "https://overpass.private.coffee/api/interpreter"
-
-    ];
-
-
-    let data =
-        null;
-
-    let lastError =
-        null;
-
-
-    for (
-        const endpoint
-        of endpoints
-    ) {
+    for (const endpoint of endpoints) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 3000);
 
         try {
-
-            const controller =
-                new AbortController();
-
-            const timer =
-                setTimeout(
-                    () =>
-                        controller.abort(),
-                    18000
-                );
-
-
-            const response =
-                await fetch(
-                    `${endpoint}?data=${encodeURIComponent(query)}`,
-                    {
-                        signal:
-                            controller.signal
-                    }
-                );
-
-
-            clearTimeout(
-                timer
+            const response = await fetch(
+                `${endpoint}?data=${encodeURIComponent(query)}`,
+                { signal: controller.signal }
             );
 
-
-            if (
-                !response.ok
-            ) {
-
-                throw new Error(
-                    `HTTP ${response.status}`
-                );
-
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
             }
 
+            const result = await response.json();
 
-            data =
-                await response.json();
+            if (!Array.isArray(result.elements)) {
+                throw new Error("Invalid restaurant data received");
+            }
 
+            data = result;
             break;
-
+        } catch (error) {
+            lastError = error;
+            console.warn("Restaurant server failed:", endpoint, error);
+        } finally {
+            clearTimeout(timer);
         }
-
-        catch (
-            error
-        ) {
-
-            lastError =
-                error;
-
-        }
-
     }
 
+    
+if (!data) {
+    console.error("Live restaurant service unavailable:", lastError);
 
-    if (!data) {
-
-        console.error(
-            "Overpass failure:",
-            lastError
-        );
-
-
-        state.liveRestaurants =
-            [];
-
-        state.matchedRestaurants =
-            [];
-
-
-        setNearbyStatus(
-            "Restaurant data could not be loaded. Try Refresh again.",
-            "error"
-        );
+    
+const demoEntries = [
+    { name: "Saravanaa Bhavan", cuisine: "indian", lat: 0.0018, lon: 0.0018 },
+    { name: "Tandoor Indian Restaurant", cuisine: "indian", lat: -0.0024, lon: 0.0012 },
+    { name: "Mayur Indian Kitchen", cuisine: "indian", lat: 0.0030, lon: -0.0015 },
+    { name: "Saffron Fine Indian Cuisine", cuisine: "indian", lat: -0.0032, lon: -0.0020 },
+    { name: "Masala Art", cuisine: "indian", lat: 0.0010, lon: -0.0040 },
+    { name: "Taj Indian Restaurant", cuisine: "indian", lat: 0.0025, lon: 0.0030 },
+    { name: "Delhi Indian Restaurant", cuisine: "indian", lat: -0.0015, lon: 0.0035 },
+    { name: "Jaipur Indian Restaurant", cuisine: "indian", lat: 0.0040, lon: 0.0010 },
+    { name: "Spice Shop Indian Cuisine", cuisine: "indian", lat: -0.0040, lon: 0.0010 },
+    { name: "Little India", cuisine: "indian", lat: 0.0020, lon: -0.0030 }
+];
 
 
-        renderRestaurantError(
-            $("#nearbyRestaurants")
-        );
+    state.liveRestaurants = demoEntries.map((item, index) => {
+        const lat = Number(latitude) + item.lat;
+        const lon = Number(longitude) + item.lon;
 
+        return {
+            uid: `demo-${index + 1}`,
+            name: item.name,
+            cuisine: item.cuisine,
+            latitude: lat,
+            longitude: lon,
+            distanceKm: calculateDistanceKm(latitude, longitude, lat, lon),
+            image: "",
+            website: "",
+            menuUrl: "",
+            address: "Demo data — not a real restaurant listing",
+            openingHours: "",
+            vegetarian: "unknown",
+            vegan: "unknown",
+            phone: "",
+            amenity: "demo",
+            rawTags: { demo: true }
+        };
+    });
 
-        renderMatchError();
-
-        return false;
-
-    }
-
-
-    const restaurants =
-        Array.isArray(
-            data.elements
-        )
-            ? data.elements
-                .map(
-                    element =>
-                        mapOsmRestaurant(
-                            element,
-                            latitude,
-                            longitude
-                        )
-                )
-                .filter(
-                    Boolean
-                )
-            : [];
-
-
-    state.liveRestaurants =
-        removeDuplicateRestaurants(
-            restaurants
-        );
-
-
-    state.liveRestaurants
-        .sort(
-            (a, b) =>
-                a.distanceKm -
-                b.distanceKm
-        );
-
+    state.matchedRestaurants = [];
 
     setNearbyStatus(
-
-        state.liveRestaurants.length
-
-            ? `${state.liveRestaurants.length} restaurants found within ${radiusKm} km.`
-
-            : "No restaurants found in this area.",
-
-        state.liveRestaurants.length
-            ? "success"
-            : ""
-
+        "Live data unavailable — displaying DEMO restaurants.",
+        "error"
     );
 
-
     renderNearbyRestaurants();
-
     renderProfile();
 
     return true;
-
 }
+
+
+    const restaurants = data.elements
+        .map(element =>
+            mapOsmRestaurant(element, latitude, longitude)
+        )
+        .filter(Boolean);
+
+    state.liveRestaurants = removeDuplicateRestaurants(restaurants);
+
+    state.liveRestaurants.sort(
+        (a, b) => a.distanceKm - b.distanceKm
+    );
+
+    setNearbyStatus(
+        state.liveRestaurants.length
+            ? `${state.liveRestaurants.length} restaurants found within ${radiusKm} km.`
+            : "No restaurants found in this area.",
+        state.liveRestaurants.length ? "success" : ""
+    );
+
+    renderNearbyRestaurants();
+    renderProfile();
+
+    return true;
+}
+
 
 
 function mapOsmRestaurant(
